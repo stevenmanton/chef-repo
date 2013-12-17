@@ -1,0 +1,20 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "opscode-ubuntu-12.04-i386"
+  config.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04-i386_provisionerless.box"
+
+  # Ensure that chef is installed. This line requires the vagrant-omnibus
+  # plugin, which can be installed using:
+  # >> vagrant plugin install vagrant-omnibus
+  # (Taken from https://github.com/schisamo/vagrant-omnibus)
+  config.omnibus.chef_version = :latest
+  
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "../../cookbooks/"
+    # chef.roles_path = "roles"
+    chef.add_recipe "conda"
+  end
+
+end
