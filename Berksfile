@@ -32,3 +32,7 @@ site :opscode
 # Uncomment to point at a local cookbook on the filesystem, relative to the
 # current working directory.
 # cookbook "myserver", :path => "/code/myserver-cookbook"
+
+cookbook 'apt'
+cookbook 'neo4j-server', 
+  :git => 'http://github.com/michaelklishin/neo4j-server-chef-cookbook'
