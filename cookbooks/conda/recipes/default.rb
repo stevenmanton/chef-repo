@@ -8,7 +8,7 @@ remote_file miniconda_installer do
   source "http://repo.continuum.io/miniconda/Miniconda3-2.2.2-Linux-x86.sh"
   action :create_if_missing
 
-  only_if "which conda"
+  not_if "hash conda 2>/dev/null"
 end
 
 # Run the installer script:
