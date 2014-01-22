@@ -24,10 +24,14 @@ bash "Install conda using script" do
   creates "#{anaconda_root}/bin/conda"
 end
 
-# Create symbolic link that's in the path:
-link "/usr/local/bin/conda" do
-  user "#{user}"
-  to "#{anaconda_root}/bin/conda"
+# Add anaconda to path
+bash "Add anaconda to path" do
+  code <<-EOS
+    echo 'export PATH="#{anaconda_root}/bin:$PATH"' >> /home/#{user}/.bash_profile
+    source /home/#{user}/.bash_profile
+  EOS
+
+  not_if "grep anaconda /home/#{user}/.bash_profile"
 end
 
 # Update conda:

@@ -42,6 +42,9 @@ Session.vim
 .netrwhist
 *~
 
+# Archive files
+.zip
+
 # OS X
 .DS_Store
 .AppleDouble
